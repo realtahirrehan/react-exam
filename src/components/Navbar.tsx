@@ -3,9 +3,6 @@ import { NavLink } from "react-router-dom";
 const pages = [
   { path: "/", title: "Home" },
   { path: "/cart", title: "View Cart" },
-  { path: "/login", title: "Login page" },
-  { path: "/signup", title: "Signup page" },
-
 ];
 
 const Navbar = () => {

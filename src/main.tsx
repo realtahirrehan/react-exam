@@ -10,69 +10,46 @@ import Login from './pages/Login.tsx'
 import ProductDetail from './pages/ProductDetail.tsx'
 import Signup from './pages/Signup.tsx'
 import PublicRoute from './components/PublicRoute.tsx'
+import { Provider } from 'react-redux'
+import { store } from './state/store.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout/>}>
+    <Route path="/" element={<Layout />}>
       <Route path="/" element={
         <ProtectedRoute>
           <Home />
-      </ProtectedRoute>
-      }/>
+        </ProtectedRoute>
+      } />
       <Route path=":productId" element={
         <ProtectedRoute>
           <ProductDetail />
-      </ProtectedRoute>
-      }/>
+        </ProtectedRoute>
+      } />
       <Route path="cart" element={
-      <ProtectedRoute>
+        <ProtectedRoute>
           <CartPage />
-      </ProtectedRoute>
-      }/>
-    < Route path="login" element={
-      <PublicRoute>
+        </ProtectedRoute>
+      } />
+      < Route path="login" element={
+        <PublicRoute>
           <Login />
-      </PublicRoute>
-      }/>
+        </PublicRoute>
+      } />
       < Route path="signup" element={
-      <PublicRoute>
+        <PublicRoute>
           <Signup />
-      </PublicRoute>
+        </PublicRoute>
 
-      }/>
-  </Route>
+      } />
+    </Route>
   )
 )
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: {
-//       <ProtectedRoute>
-//       <Home />
-//       </ProtectedRoute>
-//     }
-//   },
-//   {
-//     path: '/signup',
-//     element: <Signup />
-//   },
-//   {
-//     path: '/Login',
-//     element: <Login />
-//   },
-//   {
-//     path: '/:productId',
-//     element: <ProductDetail />
-//   },
-//   {
-//     path: '/cart',
-//     element: <CartPage />
-//   },
-// ])
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 )

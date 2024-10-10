@@ -1,0 +1,78 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import Layout from './components/Layout.tsx'
+import ProtectedRoute from './components/ProtectedRoute.tsx'
+import './index.css'
+import CartPage from './pages/CartPage.tsx'
+import Home from './pages/Home.tsx'
+import Login from './pages/Login.tsx'
+import ProductDetail from './pages/ProductDetail.tsx'
+import Signup from './pages/Signup.tsx'
+import PublicRoute from './components/PublicRoute.tsx'
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout/>}>
+      <Route path="/" element={
+        <ProtectedRoute>
+          <Home />
+      </ProtectedRoute>
+      }/>
+      <Route path=":productId" element={
+        <ProtectedRoute>
+          <ProductDetail />
+      </ProtectedRoute>
+      }/>
+      <Route path="cart" element={
+      <ProtectedRoute>
+          <CartPage />
+      </ProtectedRoute>
+      }/>
+    < Route path="login" element={
+      <PublicRoute>
+          <Login />
+      </PublicRoute>
+      }/>
+      < Route path="signup" element={
+      <PublicRoute>
+          <Signup />
+      </PublicRoute>
+
+      }/>
+  </Route>
+  )
+)
+
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: {
+//       <ProtectedRoute>
+//       <Home />
+//       </ProtectedRoute>
+//     }
+//   },
+//   {
+//     path: '/signup',
+//     element: <Signup />
+//   },
+//   {
+//     path: '/Login',
+//     element: <Login />
+//   },
+//   {
+//     path: '/:productId',
+//     element: <ProductDetail />
+//   },
+//   {
+//     path: '/cart',
+//     element: <CartPage />
+//   },
+// ])
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>,
+)

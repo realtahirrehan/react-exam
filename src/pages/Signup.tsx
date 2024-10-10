@@ -1,27 +1,22 @@
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
 import { NavLink } from "react-router-dom"
 
 const Signup = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const [confirmPassword, setConfirmPassword] = useState()
+  const [name, setName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  const handleName = (event: any) => {
-    setName((prev) => event.target.value)
+  const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value)
   }
-  const handleEmail = (event: any) => {
-    setEmail((prev) => prev = event.target.value)
+  const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value)
   }
-  const handlePassword = (event: any) => {
-    setPassword((prev) => prev = event.target.value)
-  }
-  const handleConfirmPassword = (event: any) => {
-    setConfirmPassword((prev) => prev = event.target.value)
+  const handleConfirmPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(event.target.value)
   }
 
-  const handleSubmit = (event: any) => {
-    console.log(event)
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if(name.length < 2){
       alert("Name should have atleast 2 characters")
@@ -85,7 +80,6 @@ const Signup = () => {
                 type="email"
                 autoComplete="email"
                 className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                onChange={handleEmail}
                 required
               />
             </div>

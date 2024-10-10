@@ -1,12 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
 import Navbar from "../components/Navbar"
-import { RootState } from "@reduxjs/toolkit/query"
 import { removeFromCart } from "../state/product/productSlice"
+import { RootState } from "../state/store"
+
+type CartItem = {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+};
 
 const CartPage = () => {
 
   const dispatch = useDispatch()
-  const items = useSelector((state: RootState) => state.cart.items)
+  const items : CartItem[]= useSelector((state: RootState) => state.cart.items)
 
   const handleRemoveFromCart = (id: number) => {
     dispatch(removeFromCart(id));

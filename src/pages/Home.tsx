@@ -19,7 +19,6 @@ const Home = () => {
     try {
       const response = await fetch(URL)
       const data = await response.json()
-      console.log('Api response ---> ', data)
       setProducts(data)
     } catch (error) {
       console.error('Error fetching products:', error)

@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import Layout from './components/Layout.tsx'
+import WrapperForRoutes from './components/WrapperForRoutes.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
 import './index.css'
 import CartPage from './pages/CartPage.tsx'
@@ -15,7 +15,7 @@ import { store } from './state/store.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<WrapperForRoutes />}>
       <Route path="/" element={
         <ProtectedRoute>
           <Home />
